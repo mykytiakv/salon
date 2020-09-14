@@ -154,6 +154,37 @@
         #nd_learning_calendar_single_course .ui-datepicker-calendar th {
             color: #727475;
         }
+        @media only screen and (max-width: 1199px) and (min-width: 320px) {
+            #nd_options_navigation_4_container .nd_options_display_block_responsive {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+            }
+            #nd_options_navigation_4_container .nd_options_display_block_responsive .nd_options_section {
+                width: auto;
+            }
+            #nd_options_navigation_4_container .nd_options_max_width_280_iphone_port {
+                height: 60px;
+            }
+            #nd_options_navigation_4_container .nd_options_open_navigation_4_sidebar_content {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+            }
+            .wrapper-image-container {
+                display: none;
+            }
+        }
 
     </style>
 
@@ -188,6 +219,9 @@
             margin-top: 10px;
             font-size: 13px;
             line-height: 20px;
+        }
+        html {
+            scroll-behavior: smooth;
         }
 
 
@@ -805,6 +839,29 @@
             opacity: .4;
             font-size: .8em;
         }
+        @media screen and (max-width: 767px) {
+            .phone-container > div:last-of-type {
+                display: none;
+            }
+            .phone-container > div:first-of-type {
+                padding-bottom: 5px;
+            }
+        }
+        .insta {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        #nd_options_navigation_4_container.fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 998;
+        }
     </style>
 
     <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
@@ -812,8 +869,6 @@
     <link rel="stylesheet" type="text/css"
           href="http://www.nicdarkthemes.com/themes/beauty/wp/demo/beauty-salon/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css"
           media="screen"><![endif]-->
-    <meta name="generator"
-          content="Powered by Slider Revolution 5.4.8.1 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface."/>
     <link rel="icon" href="images/favicon.jpg" sizes="32x32"/>
     <link rel="icon" href="images/favicon.jpg" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="images/favicon.jpg"/>
@@ -1012,6 +1067,26 @@
                     });
                 });
                 ///////////
+                $('.nd_options_navigation_4_sidebar #menu-main-menu a').on('click', function(e) {
+                    console.log(e)
+                    $('.nd_options_close_navigation_4_sidebar_content').click();
+                });
+
+                $(window).scroll(function(){
+                    checkHeight();
+                });
+
+                function checkHeight() {
+                    var height = $('#nd_options_navigation_4_middle_header').outerHeight() + ($(window).width() >= 768 ? 44 : 0);
+                    if ($(window).scrollTop() >= height) {
+                        $('#nd_options_navigation_4_container').addClass('fixed-header');
+                        $('.post-start').css("padding-top", height + $('#nd_options_navigation_4_container').outerHeight());
+                    }
+                    else {
+                        $('#nd_options_navigation_4_container').removeClass('fixed-header');
+                        $('.post-start').css("padding-top", 0);
+                    }
+                }
 
 
             });
@@ -1135,7 +1210,7 @@
                         <a href="#nd_options_section_time_image_contact">КОНТАКТИ</a>
                     </li>
                     <li class="nd_options_customizer_labels_color_new nd_options_color_white_first_a nd_options_border_radius_15 nd_options_padding_0_15_important menu-item menu-item-type-post_type menu-item-object-page menu-item-450">
-                        <a href="#">ЗАПИС НА КУРС</a>
+                        <a href="#nd_options_section_time_image_contact">ЗАПИС НА КУРС</a>
                     </li>
                 </ul>
             </div>
@@ -1151,7 +1226,7 @@
         <div id="nd_options_navigation_4_top_header" style="background-color: #ecbabe ;" class="nd_options_section">
 
             <!--start nd_options_container-->
-            <div class="nd_options_container nd_options_clearfix">
+            <div class="nd_options_container nd_options_clearfix phone-container">
 
                 <div style="color: #ffffff ;"
                      class="nd_options_grid_6 nd_options_padding_botttom_10 nd_options_padding_bottom_0_responsive nd_options_padding_top_10 nd_options_text_align_center_responsive">
@@ -1162,10 +1237,14 @@
                         <div  class="  nd_options_display_table nd_options_float_left">
 
 
-                            <div class="nd_options_display_table_cell nd_options_vertical_align_middle    ">
-                                <a href="#"><img alt="" width="15" height="15"
-                                                          class="nd_options_margin_right_10 nd_options_float_left"
-                                                          src="wp-content/plugins/nd-shortcodes/addons/customizer/shortcodes/top-header/img/twitter-white.svg"></a>
+                            <div class="nd_options_display_table_cell nd_options_vertical_align_middle">
+                                <a href="#" class="insta">
+                                    <svg class="nd_options_margin_right_10" width="15px" height="15px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                                        <g>
+                                            <path fill="#fff" d="M127.999746,23.06353 C162.177385,23.06353 166.225393,23.1936027 179.722476,23.8094161 C192.20235,24.3789926 198.979853,26.4642218 203.490736,28.2166477 C209.464938,30.5386501 213.729395,33.3128586 218.208268,37.7917319 C222.687141,42.2706052 225.46135,46.5350617 227.782844,52.5092638 C229.535778,57.0201472 231.621007,63.7976504 232.190584,76.277016 C232.806397,89.7746075 232.93647,93.8226147 232.93647,128.000254 C232.93647,162.177893 232.806397,166.225901 232.190584,179.722984 C231.621007,192.202858 229.535778,198.980361 227.782844,203.491244 C225.46135,209.465446 222.687141,213.729903 218.208268,218.208776 C213.729395,222.687649 209.464938,225.461858 203.490736,227.783352 C198.979853,229.536286 192.20235,231.621516 179.722476,232.191092 C166.227425,232.806905 162.179418,232.936978 127.999746,232.936978 C93.8200742,232.936978 89.772067,232.806905 76.277016,232.191092 C63.7971424,231.621516 57.0196391,229.536286 52.5092638,227.783352 C46.5345536,225.461858 42.2700971,222.687649 37.7912238,218.208776 C33.3123505,213.729903 30.538142,209.465446 28.2166477,203.491244 C26.4637138,198.980361 24.3784845,192.202858 23.808908,179.723492 C23.1930946,166.225901 23.0630219,162.177893 23.0630219,128.000254 C23.0630219,93.8226147 23.1930946,89.7746075 23.808908,76.2775241 C24.3784845,63.7976504 26.4637138,57.0201472 28.2166477,52.5092638 C30.538142,46.5350617 33.3123505,42.2706052 37.7912238,37.7917319 C42.2700971,33.3128586 46.5345536,30.5386501 52.5092638,28.2166477 C57.0196391,26.4642218 63.7971424,24.3789926 76.2765079,23.8094161 C89.7740994,23.1936027 93.8221066,23.06353 127.999746,23.06353 M127.999746,0 C93.2367791,0 88.8783247,0.147348072 75.2257637,0.770274749 C61.601148,1.39218523 52.2968794,3.55566141 44.1546281,6.72008828 C35.7374966,9.99121548 28.5992446,14.3679613 21.4833489,21.483857 C14.3674532,28.5997527 9.99070739,35.7380046 6.71958019,44.1551362 C3.55515331,52.2973875 1.39167714,61.6016561 0.769766653,75.2262718 C0.146839975,88.8783247 0,93.2372872 0,128.000254 C0,162.763221 0.146839975,167.122183 0.769766653,180.774236 C1.39167714,194.398852 3.55515331,203.703121 6.71958019,211.845372 C9.99070739,220.261995 14.3674532,227.400755 21.4833489,234.516651 C28.5992446,241.632547 35.7374966,246.009293 44.1546281,249.28042 C52.2968794,252.444847 61.601148,254.608323 75.2257637,255.230233 C88.8783247,255.85316 93.2367791,256 127.999746,256 C162.762713,256 167.121675,255.85316 180.773728,255.230233 C194.398344,254.608323 203.702613,252.444847 211.844864,249.28042 C220.261995,246.009293 227.400247,241.632547 234.516143,234.516651 C241.632039,227.400755 246.008785,220.262503 249.279912,211.845372 C252.444339,203.703121 254.607815,194.398852 255.229725,180.774236 C255.852652,167.122183 256,162.763221 256,128.000254 C256,93.2372872 255.852652,88.8783247 255.229725,75.2262718 C254.607815,61.6016561 252.444339,52.2973875 249.279912,44.1551362 C246.008785,35.7380046 241.632039,28.5997527 234.516143,21.483857 C227.400247,14.3679613 220.261995,9.99121548 211.844864,6.72008828 C203.702613,3.55566141 194.398344,1.39218523 180.773728,0.770274749 C167.121675,0.147348072 162.762713,0 127.999746,0 Z M127.999746,62.2703115 C91.698262,62.2703115 62.2698034,91.69877 62.2698034,128.000254 C62.2698034,164.301738 91.698262,193.730197 127.999746,193.730197 C164.30123,193.730197 193.729689,164.301738 193.729689,128.000254 C193.729689,91.69877 164.30123,62.2703115 127.999746,62.2703115 Z M127.999746,170.667175 C104.435741,170.667175 85.3328252,151.564259 85.3328252,128.000254 C85.3328252,104.436249 104.435741,85.3333333 127.999746,85.3333333 C151.563751,85.3333333 170.666667,104.436249 170.666667,128.000254 C170.666667,151.564259 151.563751,170.667175 127.999746,170.667175 Z M211.686338,59.6734287 C211.686338,68.1566129 204.809755,75.0337031 196.326571,75.0337031 C187.843387,75.0337031 180.966297,68.1566129 180.966297,59.6734287 C180.966297,51.1902445 187.843387,44.3136624 196.326571,44.3136624 C204.809755,44.3136624 211.686338,51.1902445 211.686338,59.6734287 Z" fill="#0A0A08"></path>
+                                        </g>
+                                    </svg>
+                                </a>
                             </div>
 
 
@@ -1178,20 +1257,7 @@
                             <div class="nd_options_display_table_cell nd_options_vertical_align_middle    ">
                                 <a href="#"><img alt="" width="15" height="15"
                                                           class="nd_options_margin_right_10 nd_options_float_left"
-                                                          src="wp-content/plugins/nd-shortcodes/addons/customizer/shortcodes/top-header/img/linkedin-white.svg"></a>
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="  nd_options_display_table nd_options_float_left">
-
-
-                            <div class="nd_options_display_table_cell nd_options_vertical_align_middle    ">
-                                <a href="#"><img alt="" width="15" height="15"
-                                                          class="nd_options_margin_right_10 nd_options_float_left"
-                                                          src="wp-content/plugins/nd-shortcodes/addons/customizer/shortcodes/top-header/img/pinterest-white.svg"></a>
+                                                          src="wp-content/plugins/nd-shortcodes/addons/customizer/shortcodes/top-header/img/facebook-white.svg"></a>
                             </div>
 
 
@@ -1281,7 +1347,7 @@
             <div class="nd_options_grid_12 nd_options_display_none_all_responsive nd_options_text_align_center">
 
                 <a href="/">
-                    <img style="margin-top:0px;max-height: 100px;width: auto;" alt="" class="" width="320" src="http://realaesthetics.com.ua/img/header-logo.png">
+                    <img style="margin-top:0px;max-height: 90px;width: auto;" alt="" class="" width="320" src="http://realaesthetics.com.ua/img/header-logo.png">
                 </a>
 
             </div>
@@ -1343,7 +1409,7 @@
                                         <a href="#nd_options_section_time_image_contact">КОНТАКТИ</a>
                                     </li>
                                     <li class="nd_options_customizer_labels_color_new nd_options_color_white_first_a nd_options_border_radius_15 nd_options_padding_0_15_important menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-450">
-                                        <a href="#">ЗАПИС НА КУРС</a>
+                                        <a href="#nd_options_section_time_image_contact">ЗАПИС НА КУРС</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1356,25 +1422,22 @@
 
                 <!--RESPONSIVE-->
                 <div class="nd_options_section nd_options_text_align_center nd_options_display_none nd_options_display_block_responsive">
-                    <div class="nd_options_section nd_options_height_20"></div>
 
                     <a class="nd_options_display_inline_block"
                        href="http://www.nicdarkthemes.com/themes/beauty/wp/demo/beauty-salon"><img alt=""
                                                                                                    class="nd_options_float_left nd_options_max_width_280_iphone_port"
-                                                                                                   width="320"
-                                                                                                   src="wp-content/uploads/sites/2/2017/01/logo.png"></a>
+                                                                                                   src="http://realaesthetics.com.ua/img/header-logo.png"></a>
 
                     <div class="nd_options_section nd_options_height_10"></div>
 
                     <div class="nd_options_section">
                         <a class="nd_options_open_navigation_4_sidebar_content nd_options_open_navigation_4_sidebar_content"
-                           href="index.html#">
+                           href="javascript:void(0);">
                             <img alt="" class="" width="25"
                                  src="wp-content/plugins/nd-shortcodes/addons/customizer/header/img/icon-menu.svg">
                         </a>
                     </div>
 
-                    <div class="nd_options_section nd_options_height_20"></div>
                 </div>
                 <!--RESPONSIVE-->
 
@@ -1475,7 +1538,7 @@
     <!--page margin-->
 
     <!--start nd_options_container-->
-    <div class="nd_options_container nd_options_padding_0_15 nd_options_box_sizing_border_box nd_options_clearfix">
+    <div class="nd_options_container nd_options_padding_0_15 nd_options_box_sizing_border_box nd_options_clearfix post-start">
 
 
         <!--#post-->
@@ -1500,13 +1563,13 @@
                                                 data-slotamount="default" data-hideafterloop="0"
                                                 data-hideslideonmobile="off" data-easein="default"
                                                 data-easeout="default" data-masterspeed="default"
-                                                data-thumb="images/parallax-8-1-100x50.jpg"
+                                                data-thumb="images/pic_1.png"
                                                 data-rotate="0" data-saveperformance="off" data-title="Spa Salon"
                                                 data-param1="01" data-param2="" data-param3="" data-param4=""
                                                 data-param5="" data-param6="" data-param7="" data-param8=""
                                                 data-param9="" data-param10="" data-description="">
                                                 <!-- MAIN IMAGE -->
-                                                <img src="images/alan-caishan-cU53ZFBr3lk-unsplash.jpg" alt=""
+                                                <img src="images/pic_3.jpg" alt=""
                                                      title="parallax-8" width="2000" height="1336"
                                                      data-bgposition="center center" data-bgfit="cover"
                                                      data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg"
@@ -1585,7 +1648,8 @@
                                                      data-paddingleft="[0,0,0,0]"
 
                                                      style="z-index: 7; white-space: nowrap; font-size: 13px; line-height: 13px; font-weight: 400; color: rgba(255,255,255,1);font-family:'Open Sans';letter-spacing:3px;">
-                                                    LOREM IPSUM DOLOR AMET, CONSECTETUR
+                                                    <!--LOREM IPSUM DOLOR AMET, CONSECTETUR-->
+                                                    КВАЛІФІКОВАНИЙ
                                                 </div>
 
                                                 <!-- LAYER NR. 4 -->
@@ -1595,9 +1659,9 @@
                                                      data-hoffset="['0','0','0','0']"
                                                      data-y="['middle','middle','middle','middle']"
                                                      data-voffset="['-30','-10','-10','-10']"
-                                                     data-fontsize="['65','65','50','40']"
-                                                     data-lineheight="['85','85','55','45']"
-                                                     data-width="['none','none','none','320']"
+                                                     data-fontsize="['65','65','40','20']"
+                                                     data-lineheight="['85','85','45','30']"
+                                                     data-width="['none','none','none','none']"
                                                      data-height="none"
                                                      data-whitespace="nowrap"
 
@@ -1612,52 +1676,24 @@
                                                      data-paddingleft="[0,0,0,0]"
 
                                                      style="z-index: 8; white-space: nowrap; font-size: 65px; line-height: 85px; font-weight: 700; color: rgba(255,255,255,1);font-family:'Playfair Display';">
-                                                    Beauty Centre Spa<br/>
-                                                    Wellness
+                                                    <!--Beauty Centre Spa<br/>-->
+                                                    <!--Wellness-->
+                                                    НАВЧАЛЬНИЙ ЗАКЛАД У СФЕРІ<br/>ІНДУСТРІЇ КРАСИ
                                                 </div>
 
-                                                <!-- LAYER NR. 5 -->
-                                                <div class="tp-caption rev-btn  rs-parallaxlevel-15"
-                                                     id="slide-14-layer-6"
-                                                     data-x="['center','center','center','center']"
-                                                     data-hoffset="['0','0','0','0']"
-                                                     data-y="['middle','top','top','top']"
-                                                     data-voffset="['110','611','689','540']"
-                                                     data-fontsize="['16','13','13','13']"
-                                                     data-lineheight="['16','13','13','13']"
-                                                     data-fontweight="['400','500','500','500']"
-                                                     data-width="none"
-                                                     data-height="none"
-                                                     data-whitespace="nowrap"
-                                                     data-visibility="['on','off','off','off']"
-
-                                                     data-type="button"
-                                                     data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
-                                                     data-responsive_offset="on"
-                                                     data-responsive="off"
-                                                     data-frames='[{"delay":2750,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":500,"frame":"999","to":"x:0;y:0;z:0;rX:0;rY:0;rZ:0;sX:0.75;sY:0.75;skX:0;skY:0;opacity:0;","ease":"Power1.easeIn"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255,255,255,1);bg:transparent;"}]'
-                                                     data-textAlign="['left','left','left','left']"
-                                                     data-paddingtop="[15,15,15,15]"
-                                                     data-paddingright="[25,25,25,25]"
-                                                     data-paddingbottom="[15,15,15,15]"
-                                                     data-paddingleft="[25,25,25,25]"
-
-                                                     style="z-index: 9; white-space: nowrap; font-size: 16px; line-height: 16px; font-weight: 400; color: rgba(163,163,163,1);font-family:'Playfair Display';background-color:rgba(255,255,255,1);border-color:rgba(255,255,255,1);border-style:solid;border-width:2px 2px 2px 2px;border-radius:25px 25px 25px 25px;cursor:pointer;">
-                                                    READ MORE
-                                                </div>
                                             </li>
                                             <!-- SLIDE  -->
                                             <li data-index="rs-15" data-transition="fadethroughlight"
                                                 data-slotamount="default" data-hideafterloop="0"
                                                 data-hideslideonmobile="off" data-easein="default"
                                                 data-easeout="default" data-masterspeed="default"
-                                                data-thumb="images/parallax-4-100x50.jpg"
+                                                data-thumb="images/pic_2.jpg"
                                                 data-rotate="0" data-saveperformance="off" data-title="Wellness"
                                                 data-param1="01" data-param2="" data-param3="" data-param4=""
                                                 data-param5="" data-param6="" data-param7="" data-param8=""
                                                 data-param9="" data-param10="" data-description="">
                                                 <!-- MAIN IMAGE -->
-                                                <img src="images/wellness-285590_1920.jpg" alt=""
+                                                <img src="images/pic_2.jpg" alt=""
                                                      title="parallax-4" width="1600" height="1006"
                                                      data-bgposition="center center" data-bgfit="cover"
                                                      data-bgrepeat="no-repeat" data-bgparallax="3" class="rev-slidebg"
@@ -1736,19 +1772,22 @@
                                                      data-paddingleft="[0,0,0,0]"
 
                                                      style="z-index: 7; white-space: nowrap; font-size: 13px; line-height: 13px; font-weight: 400; color: rgba(255,255,255,1);font-family:'Open Sans';letter-spacing:3px;">
-                                                    LOREM IPSUM DOLOR AMET, CONSECTETUR
+                                                    КВАЛІФІКОВАНИЙ
                                                 </div>
 
                                                 <!-- LAYER NR. 10 -->
                                                 <div class="tp-caption   tp-resizeme rs-parallaxlevel-1"
                                                      id="slide-15-layer-2"
                                                      data-x="['center','center','center','center']"
+                                                    -width="1"
+                                                     data-height="100"
+                                                     data-whitespace="nowrap"
                                                      data-hoffset="['0','0','0','0']"
                                                      data-y="['middle','middle','middle','middle']"
                                                      data-voffset="['-30','-10','-10','-10']"
-                                                     data-fontsize="['65','65','50','40']"
-                                                     data-lineheight="['85','85','55','45']"
-                                                     data-width="['none','none','none','320']"
+                                                     data-fontsize="['65','65','40','20']"
+                                                     data-lineheight="['85','85','45','30']"
+                                                     data-width="['none','none','none','none']"
                                                      data-height="none"
                                                      data-whitespace="nowrap"
 
@@ -1763,38 +1802,7 @@
                                                      data-paddingleft="[0,0,0,0]"
 
                                                      style="z-index: 8; white-space: nowrap; font-size: 65px; line-height: 85px; font-weight: 700; color: rgba(255,255,255,1);font-family:'Playfair Display';">
-                                                    Beauty Centre Spa<br/>
-                                                    Wellness
-                                                </div>
-
-                                                <!-- LAYER NR. 11 -->
-                                                <div class="tp-caption rev-btn  rs-parallaxlevel-15"
-                                                     id="slide-15-layer-6"
-                                                     data-x="['center','center','center','center']"
-                                                     data-hoffset="['0','0','0','0']"
-                                                     data-y="['middle','top','top','top']"
-                                                     data-voffset="['110','611','689','540']"
-                                                     data-fontsize="['16','13','13','13']"
-                                                     data-lineheight="['16','13','13','13']"
-                                                     data-fontweight="['400','500','500','500']"
-                                                     data-width="none"
-                                                     data-height="none"
-                                                     data-whitespace="nowrap"
-                                                     data-visibility="['on','off','off','off']"
-
-                                                     data-type="button"
-                                                     data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
-                                                     data-responsive_offset="on"
-                                                     data-responsive="off"
-                                                     data-frames='[{"delay":2750,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":500,"frame":"999","to":"x:0;y:0;z:0;rX:0;rY:0;rZ:0;sX:0.75;sY:0.75;skX:0;skY:0;opacity:0;","ease":"Power1.easeIn"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255,255,255,1);bg:transparent;"}]'
-                                                     data-textAlign="['left','left','left','left']"
-                                                     data-paddingtop="[15,15,15,15]"
-                                                     data-paddingright="[25,25,25,25]"
-                                                     data-paddingbottom="[15,15,15,15]"
-                                                     data-paddingleft="[25,25,25,25]"
-
-                                                     style="z-index: 9; white-space: nowrap; font-size: 16px; line-height: 16px; font-weight: 400; color: rgba(163,163,163,1);font-family:'Playfair Display';background-color:rgba(255,255,255,1);border-color:rgba(255,255,255,1);border-style:solid;border-width:2px 2px 2px 2px;border-radius:25px 25px 25px 25px;cursor:pointer;">
-                                                    READ MORE
+                                                    НАВЧАЛЬНИЙ ЗАКЛАД У СФЕРІ<br/>ІНДУСТРІЇ КРАСИ
                                                 </div>
 
                                                 <!-- LAYER NR. 12 -->
@@ -1804,10 +1812,7 @@
                                                      data-hoffset="['0','0','0','0']"
                                                      data-y="['middle','middle','middle','middle']"
                                                      data-voffset="['210','210','119','100']"
-                                                     data-width="1"
-                                                     data-height="100"
-                                                     data-whitespace="nowrap"
-
+                                                     data
                                                      data-type="shape"
                                                      data-responsive_offset="on"
                                                      data-responsive="off"
@@ -2239,7 +2244,7 @@
                                 //]]&gt;
                             </script>
 
-                            <h1 style="text-align:center; color:#ffffff; font-size:50px; "
+                            <h1 style="text-align:center; color:#ffffff; font-size:50px;"
                                 class=" nd_options_font_weight_bolder nd_options_counter  " data-to="12"
                                 data-speed="1000">12</h1>
                             <div style="background-color:; height: 30px;" class="nicdark_section  "></div>
@@ -3638,7 +3643,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                    <div class="wpb_column vc_column_container vc_col-sm-4 wrapper-image-container">
                         <div class="vc_column-inner">
                             <div class="wpb_wrapper"></div>
                         </div>
@@ -3757,7 +3762,7 @@
                                                 <div style="background-color:; height: 20px;"
                                                      class="nicdark_section  "></div>
                                                 <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: 3px; font-weight:bold;"
-                                                   class="   nd_options_second_font ">НАШ ОФІС</p>
+                                                   class="   nd_options_second_font ">НАША АДРЕСА</p>
                                                 <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: px; font-weight:lighter;"
                                                    class="   nd_options_second_font ">м. Львів, вул. Івана Франка 90, офіс 1</p>
                                                 <div style="background-color:; height: 30px;"
@@ -3798,18 +3803,18 @@
                                     <div class="wpb_column vc_column_container vc_col-sm-4">
                                         <div class="vc_column-inner">
                                             <div class="wpb_wrapper">
-                                                <div style="background-color:; height: 20px;"
+                                                <div style="height: 20px;"
                                                      class="nicdark_section  "></div>
-                                                <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: 3px; font-weight:bold;"
-                                                   class="   nd_options_second_font ">ТЕЛЕФОНИ</p>
-                                                <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: px; font-weight:lighter;"
-                                                   class="   nd_options_second_font ">(032) 260-16-34 </p>
-                                                <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: px; font-weight:lighter;"
-                                                   class="   nd_options_second_font ">+38 (097) 220-84-31 </p>
-                                                <p style="color:#ffffff; padding:px; text-align:center; font-size:14px; line-height:25px; letter-spacing: px; font-weight:lighter;"
-                                                   class="   nd_options_second_font ">+38 (098) 479-48-67</p>
+                                                <p style="color:#ffffff; text-align:center; font-size:14px; line-height:25px; letter-spacing: 3px; font-weight:bold;"
+                                                   class="nd_options_second_font ">ТЕЛЕФОНИ</p>
+                                                <p style="color:#ffffff; text-align:center; font-size:14px; line-height:25px; font-weight:lighter;"
+                                                   class="nd_options_second_font ">(032) 260-16-34 </p>
+                                                <p style="color:#ffffff; text-align:center; font-size:14px; line-height:25px; font-weight:lighter;"
+                                                   class="nd_options_second_font ">+38 (097) 220-84-31 </p>
+                                                <p style="color:#ffffff; text-align:center; font-size:14px; line-height:25px; font-weight:lighter;"
+                                                   class="nd_options_second_font ">+38 (098) 479-48-67</p>
 
-                                                <div style="background-color:; height: 30px;"
+                                                <div style="height: 30px;"
                                                      class="nicdark_section  "></div>
                                                 <div style="text-align:center;" class="nd_options_section">
                                                     <img alt="" style="width:40px;"
@@ -3880,7 +3885,7 @@
 
 
                     <div class="nd_options_display_table_cell nd_options_vertical_align_middle">
-                        <a href="index.html#"><img alt="" width="15" height="15"
+                        <a href="#" class><img alt="" width="15" height="15"
                                                    class="nd_options_margin_left_20 nd_options_float_left"
                                                    src="wp-content/plugins/nd-shortcodes/addons/customizer/shortcodes/top-header/img/instagram-grey.svg"></a>
                     </div>
